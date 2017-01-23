@@ -15,8 +15,8 @@
 2、还包括不常用的：</br>
 Retrofit2+Xml（一般都是+gson）的解析</br>
 3、数据来源方面：</br>
-天气：新浪天气</br>> 
-笑话：使用免费的野狗云通讯，相当于提供了免费的后台，可以即时（随意）改变数据</br>
-图片：储存在个人简书blog-xandone</br>
+天气：[新浪天气](http://weather.news.sina.com.cn/)</br>
+笑话：使用免费的[野狗云通讯](https://www.wilddog.com/)，相当于提供了免费的后台，可以即时（随意）改变数据</br>
+图片：储存在[个人简书blog-xandone](http://www.jianshu.com/u/e34dccbf55b2)</br>
 ###四、项目：
 如果你觉还不错，请给颗star鼓励一下吧，欢迎吐槽~
