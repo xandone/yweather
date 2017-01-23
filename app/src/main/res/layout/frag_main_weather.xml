@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/weather_title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_card">
+
+        <ImageView
+            android:id="@+id/weather_title_bg_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/y1"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/current_weather_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/heavy_rain" />
+
+        <TextView
+            android:id="@+id/current_temp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/low_temp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/high_temp_tv"
+            android:layout_alignStart="@+id/high_temp_tv"
+            android:layout_below="@+id/high_temp_tv"
+            android:drawableLeft="@drawable/l_arrow"
+            android:textColor="@color/light_tv_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/high_temp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/current_temp_tv"
+            android:layout_toRightOf="@+id/current_temp_tv"
+            android:drawableLeft="@drawable/h_arrow"
+            android:textColor="@color/light_tv_color"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <!--<include layout="@layout/weahter_day" />-->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/care_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/future_weather_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

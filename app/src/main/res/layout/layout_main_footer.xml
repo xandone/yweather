@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_foot"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/main_foot_rg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:paddingTop="6dp">
+
+        <RadioButton
+            android:id="@+id/mian_footer_care_rb"
+            style="@style/main_footer_radio"
+            android:checked="true"
+            android:drawableTop="@drawable/footer_drawable_care"
+            android:text="天气" />
+
+        <RadioButton
+            android:id="@+id/mian_footer_video_rb"
+            style="@style/main_footer_radio"
+            android:drawableTop="@drawable/footer_drawable_girl"
+            android:text="妹纸" />
+
+        <RadioButton
+            android:id="@+id/mian_footer_home_rb"
+            style="@style/main_footer_radio"
+            android:drawableTop="@drawable/footer_drawable_video"
+            android:text="糗事" />
+
+    </RadioGroup>
+
+
+</RelativeLayout>

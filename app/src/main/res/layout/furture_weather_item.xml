@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/future_weather_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card">
+
+    <TextView
+        android:id="@+id/future_weather_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/light_tv_black"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/future_weather_item_date"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/future_weather_item_weather_tv"
+            style="@style/andone_weather_furture_tv"
+            android:drawableLeft="@drawable/furture_weather_icon" />
+
+        <TextView
+            android:id="@+id/future_weather_item_temp_tv"
+            style="@style/andone_weather_furture_tv"
+            android:layout_toRightOf="@id/future_weather_item_weather_tv"
+            android:drawableLeft="@drawable/furture_temp_icon" />
+
+        <TextView
+            android:id="@+id/future_weather_item_wind_tv"
+            style="@style/andone_weather_furture_tv"
+            android:layout_below="@id/future_weather_item_weather_tv"
+            android:drawableLeft="@drawable/furture_wind_icon" />
+
+        <TextView
+            android:id="@+id/future_weather_item_feel_tv"
+            style="@style/andone_weather_furture_tv"
+            android:layout_below="@id/future_weather_item_weather_tv"
+            android:layout_toRightOf="@id/future_weather_item_wind_tv"
+            android:drawableLeft="@drawable/furture_feel_icon" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/future_weather_item_day_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/day_icon" />
+
+</RelativeLayout>

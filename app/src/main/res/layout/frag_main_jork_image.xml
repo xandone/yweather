@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/joke_img_bg_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/joke_img_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/joke_img_bg_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="开发中.."
+        android:textColor="@color/middle_tv_black"
+        android:textSize="24sp" />
+
+</RelativeLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weather_night_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:background="@drawable/bg_card"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/andone_weather_rl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_1" />
+
+        <TextView
+            style="@style/andone_weather_high"
+            android:text="体　感:" />
+
+        <TextView
+            android:id="@+id/weather_night_feel_tv"
+            style="@style/andone_weather_status" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/andone_weather_rl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_2" />
+
+        <TextView
+            style="@style/andone_weather_high"
+            android:text="穿　衣:" />
+
+        <TextView
+            android:id="@+id/weather_night_clothes_tv"
+            style="@style/andone_weather_status" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/andone_weather_rl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_3" />
+
+        <TextView
+            style="@style/andone_weather_high"
+            android:text="风　力:" />
+
+        <TextView
+            android:id="@+id/weather_night_wind_tv"
+            style="@style/andone_weather_status" />
+
+        <TextView
+            android:id="@+id/weather_night_wind_value_tv"
+            style="@style/andone_weather_status"
+            android:layout_marginLeft="4dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/andone_weather_rl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_4" />
+
+        <TextView
+            style="@style/andone_weather_high"
+            android:text="污　染:" />
+
+        <TextView
+            android:id="@+id/weather_night_pollution_tv"
+            style="@style/andone_weather_status" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/andone_weather_rl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_5" />
+
+        <TextView
+            style="@style/andone_weather_high"
+            android:text="紫外线:" />
+
+        <TextView
+            android:id="@+id/weather_night_ultraviolet_rays_tv"
+            style="@style/andone_weather_status" />
+
+    </LinearLayout>
+
+</LinearLayout>

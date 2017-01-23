@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/joke_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/joke_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一哥们求佛"
+            android:textColor="@color/light_tv_black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/joke_item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/joke_item_title"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="刚和哥们儿一起去礼佛，他跪在地上念念有词，好像还念了一串数字。出了佛堂我问他许愿干嘛还要念一串数字，他瞄了我一眼说：
+        “我名字太普通了，全国没有十万也有八万，我怕神仙弄混了，所以我报的身份证号码。”"
+            android:textColor="@color/light_tv_color"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/joke_item_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>

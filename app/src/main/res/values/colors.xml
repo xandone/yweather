@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#307A7B</color>
+    <color name="colorPrimaryDark">#245C5C</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="black">#FF000000</color>
+    <color name="gray">#FFF0F0F0</color>
+
+    <color name="toast_stroke_gray">#99d4d4d4</color>
+    <color name="img_down_text_color">#7CC625</color>
+    <color name="footer_text_color_selected">#7CC625</color>
+    <color name="footer_text_color_normal">#307A7B</color>
+
+    <color name="refresh_progress_1">#e91e63</color>
+    <color name="refresh_progress_2">#00b0ff</color>
+    <color name="refresh_progress_3">#245C5C</color>
+
+    <color name="light_tv_color">#A0A6A5</color>
+    <color name="light_tv_black">#6A6868</color>
+    <color name="middle_tv_black">#535252</color>
+
+</resources>
