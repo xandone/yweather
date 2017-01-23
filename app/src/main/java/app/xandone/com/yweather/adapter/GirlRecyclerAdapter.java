@@ -150,7 +150,7 @@ public class GirlRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             switch (v.getId()) {
                 case R.id.girl_photo_item_rl:
                     Intent intent = new Intent(mContext, GirlDetailsActivity.class);
-                    intent.putExtra(GIRLRECYCLERADAPTER_URL, list.get(getLayoutPosition()).getUrl());
+                    intent.putExtra(GIRLRECYCLERADAPTER_URL, nowlist.get(getLayoutPosition()).getUrl());
                     mContext.startActivity(intent);
                     break;
             }
