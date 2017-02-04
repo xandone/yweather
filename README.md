@@ -2,7 +2,7 @@
 ##一款简约风格的app
 ###一、说明：
 最近闲暇时间写了款比较简约风格的小app
-包含模块：天气、妹纸、笑话，该app适合个人（新手）练手玩玩
+包含模块：天气、妹纸、笑话，该app适合个人练手玩玩
 ###二、效果图（gif）：
 ![](https://github.com/xandone/yweather/blob/master/yweather_gif/001.gif)
 ![](https://github.com/xandone/yweather/blob/master/yweather_gif/002.gif)
