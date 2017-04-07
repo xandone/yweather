@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="come_on_string">
-        <item>今宵酒醒何处？</item>
-        <item>杨柳岸，晓风残月~</item>
-        <item>烟笼寒水月笼沙</item>
-        <item>夜泊秦淮近酒家</item>
+        <item>昔人已乘黄鹤去</item>
+        <item>此地空余黄鹤楼</item>
+        <item>黄鹤一去不复返</item>
+        <item>白云千载空悠悠</item>
         <item>晴川历历汉阳树</item>
         <item>芳草萋萋鹦鹉洲</item>
-        <item>稻花香里说丰年</item>
-        <item>听取蛙声一片</item>
-        <item>人生得意须尽欢</item>
-        <item>莫使金樽空对月</item>
-        <item>谢谢你的赞赏~</item>
+        <item>日暮乡关何处是</item>
+        <item>烟波江上使人愁</item>
+        <item>你好帅~</item>
     </string-array>
 
     <string-array name="tab_layout_string">

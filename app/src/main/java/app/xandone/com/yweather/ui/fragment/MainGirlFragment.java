@@ -1,7 +1,6 @@
 package app.xandone.com.yweather.ui.fragment;
 
 
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -115,12 +114,7 @@ public class MainGirlFragment extends BaseFragment implements SwipeRefreshLayout
                         if (mGirlRecyclerAdapter != null) {
                             if (mGirlRecyclerAdapter.getmStatus() != GirlRecyclerAdapter.LOAD_NONE) {
                                 mGirlRecyclerAdapter.updateLoadStatus(GirlRecyclerAdapter.LOAD_MORE);
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mGirlRecyclerAdapter.addListPic();
-                                    }
-                                }, 1600);
+                                mGirlRecyclerAdapter.addListPic();
                             }
                         }
                     }
@@ -185,7 +179,7 @@ public class MainGirlFragment extends BaseFragment implements SwipeRefreshLayout
                     girl_swipe.setRefreshing(false);
                 }
             }
-        }, 2000);
+        }, 1200);
     }
 
     public void loadMoreGirl() {

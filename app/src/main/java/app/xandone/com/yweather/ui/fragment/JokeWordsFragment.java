@@ -84,6 +84,9 @@ public class JokeWordsFragment extends BaseFragment implements SwipeRefreshLayou
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
                 List<Object> list = (List<Object>) value.get("results");
+                if (jokeList != null) {
+                    jokeList.clear();
+                }
                 for (Object obj : list) {
                     Map<String, String> o = (Map<String, String>) obj;
                     if (!StringUtils.isEmpty(o.get("title"))) {

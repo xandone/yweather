@@ -52,7 +52,7 @@ public class GirlRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private int mLastPosition = -1;
 
-    public static final int ONECE_LOAD = 16;
+    public static final int ONECE_LOAD = 12;
     private int now_size = ONECE_LOAD;
 
     public GirlRecyclerAdapter(Context context, List list, List nowList) {

@@ -1,6 +1,7 @@
 package app.xandone.com.yweather.ui.fragment;
 
 
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import app.xandone.com.yweather.BaseApplication;
@@ -157,10 +156,14 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
             current_temp_tv.setText(weatherXmlData.getStatus1());
             high_temp_tv.setText(weatherXmlData.getTemperature1() + "℃");
             low_temp_tv.setText(weatherXmlData.getTemperature2() + "℃");
+            high_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.light_tv_color));
+            low_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.light_tv_color));
         } else {
             current_temp_tv.setText(weatherXmlData.getStatus2());
             high_temp_tv.setText(weatherXmlData.getTemperature1() + "℃");
             low_temp_tv.setText(weatherXmlData.getTemperature2() + "℃");
+            high_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.white));
+            low_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.white));
         }
         String myWeather = weatherXmlData.getStatus1();
         if (StringUtils.isEmpty(myWeather)) {
