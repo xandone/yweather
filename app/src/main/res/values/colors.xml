@@ -22,4 +22,7 @@
     <color name="light_tv_black">#6A6868</color>
     <color name="middle_tv_black">#535252</color>
 
+    <color name="brightWhite">#ebeceb</color>
+    <color name="divide_line">#ccc</color>
+
 </resources>

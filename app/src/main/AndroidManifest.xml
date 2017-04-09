@@ -26,6 +26,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.activity.JokeDetailsActivity" />
         <activity android:name=".ui.activity.GirlDetailsActivity" />
+        <activity android:name=".ui.activity.ChooseCityActivity" />
 
         <receiver android:name="com.wilddog.client.receiver.WilddogAuthCastReceiver">
             <intent-filter>

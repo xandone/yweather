@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <app.xandone.com.yweather.widget.UserCircleIcon
+            android:id="@+id/user_icon_iv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_launcher"
+            app:civ_border_color="#FFEEEEEE"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/user_icon_iv"
+            android:layout_below="@id/user_icon_iv"
+            android:textColor="@color/white"
+            android:text="xandone" />
+    </RelativeLayout>
+
+    <View style="@style/LeftSlideitem_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/menu_1"
+            style="@style/LeftSlideitem_ll">
+
+            <ImageView
+                style="@style/LeftSlideitem_iv"
+                android:background="@drawable/icon_location" />
+
+            <TextView
+                style="@style/LeftSlideitem_tv"
+                android:text="城市" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/LeftSlideitem_ll">
+
+        <LinearLayout
+            android:id="@+id/foot_menu_set"
+            style="@style/LeftSlidefoot_ll">
+
+            <ImageView
+                style="@style/LeftSlideitem_iv"
+                android:background="@mipmap/ic_launcher" />
+
+            <TextView
+                style="@style/LeftSlideitem_tv"
+                android:text="设置"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/foot_menu_exit"
+            style="@style/LeftSlidefoot_ll">
+
+            <ImageView
+                android:id="@+id/image"
+                style="@style/LeftSlideitem_iv"
+                android:background="@mipmap/ic_launcher" />
+
+            <TextView
+                style="@style/LeftSlideitem_tv"
+                android:text="退出"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
