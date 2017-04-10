@@ -104,6 +104,7 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
         care_refresh.setColorSchemeResources(R.color.refresh_progress_3, R.color.refresh_progress_2, R.color.refresh_progress_1);
         care_refresh.setOnRefreshListener(this);
         mToolbar.setTitle(StringRes.getStr(R.string.toolbar_title_yweather));
+        mToolbar.setNavigationIcon(R.drawable.icon_more);
 
         mFurtureRecyclerAdapter = new FurtureRecyclerAdapter(this, BaseApplication.sContext, futureMap);
         mLinearLayoutManager = new LinearLayoutManager(BaseApplication.sContext);
