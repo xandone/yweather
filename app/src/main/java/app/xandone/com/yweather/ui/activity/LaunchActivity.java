@@ -8,7 +8,9 @@ import android.widget.ImageView;
 
 import app.xandone.com.yweather.MainActivity;
 import app.xandone.com.yweather.R;
+import app.xandone.com.yweather.service.CheckAdService;
 import app.xandone.com.yweather.ui.base.BaseActivity;
+import app.xandone.com.yweather.utils.SpUtils;
 import butterknife.BindView;
 
 /**
@@ -17,6 +19,8 @@ import butterknife.BindView;
 public class LaunchActivity extends BaseActivity {
     @BindView(R.id.launch_iv)
     ImageView launch_iv;
+
+    private boolean isDownLoad;
 
     @Override
     public int setLayout() {
@@ -30,7 +34,15 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        initAd();
         launcAnim(launch_iv);
+    }
+
+    public void initAd() {
+        isDownLoad = SpUtils.getSpBooleanData(CheckAdService.AD_ISDOWN_KEY);
+        if (isDownLoad) {
+
+        }
     }
 
     public void launcAnim(View v) {
