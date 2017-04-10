@@ -27,7 +27,7 @@ public class WeatherDataPresenter extends WeatherDataContract.Presenter {
                     }
 
                     @Override
-                    protected void onErrorResponse(String message) {
+                    protected void onErrorResponse(int message) {
                         mView.showErrorTip(message);
                     }
                 });

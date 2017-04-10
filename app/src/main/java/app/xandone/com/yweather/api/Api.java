@@ -30,6 +30,7 @@ public class Api {
     private static SparseArray<Api> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
 
     private static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
+    private static final long CACHE_STALE_SEC_NO = 0;
 
     private static final String CACHE_CONTROL_CACHE = "only-if-cached, max-stale=" + CACHE_STALE_SEC;
 
@@ -57,7 +58,7 @@ public class Api {
                 .addNetworkInterceptor(mRewriteCacheControlInterceptor)
                 .addInterceptor(headerInterceptor)
                 .addInterceptor(logInterceptor)
-                .cache(cache)
+//                .cache(cache)
                 .build();
 
         retrofit = new Retrofit.Builder()

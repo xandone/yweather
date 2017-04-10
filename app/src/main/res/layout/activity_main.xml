@@ -20,7 +20,7 @@
 
 
     <fragment
-        android:id="@+id/leftSlide_fragment"
+        android:id="@+id/leftSlide_frag"
         android:name="app.xandone.com.yweather.ui.fragment.LeftSlideFragment"
         android:layout_width="240dp"
         android:layout_height="match_parent"

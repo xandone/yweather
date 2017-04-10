@@ -1,6 +1,7 @@
 package app.xandone.com.yweather.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.config.Config;
 import app.xandone.com.yweather.ui.activity.ChooseCityActivity;
+import app.xandone.com.yweather.ui.fragment.MainWeatherFragment;
 import app.xandone.com.yweather.utils.SpUtils;
 import app.xandone.com.yweather.utils.StringUtils;
 import butterknife.BindView;
@@ -81,6 +83,10 @@ public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             break;
                         case TYPE_C:
                             SpUtils.setSpStringData(Config.APP_LOCATION_CITY, list.get(getLayoutPosition()));
+                            Intent intent = new Intent(MainWeatherFragment.ACTION_CAST);
+                            intent.putExtra(MainWeatherFragment.ACTION_CAST_KEY, list.get(getLayoutPosition()));
+                            mActivity.sendBroadcast(intent);
+                            mActivity.finish();
                             break;
                     }
                     break;

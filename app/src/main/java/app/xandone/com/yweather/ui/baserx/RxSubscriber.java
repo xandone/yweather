@@ -15,6 +15,10 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
     private String msg;
     private boolean showDialog = true;
 
+    public static final int ERROR_NET = 1;
+    public static final int ERROR_SERVER = 2;
+    public static final int ERROR_OTHER = 3;
+
     public RxSubscriber(Context context) {
         this(context, BaseApplication.sContext.getString(R.string.loading), true);
     }
@@ -61,15 +65,16 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
         e.printStackTrace();
         //网络
         if (!NetWorkUtils.isNetConnected(BaseApplication.sContext)) {
-            onErrorResponse(BaseApplication.sContext.getString(R.string.no_net));
+            onErrorResponse(ERROR_NET);
         }
-        //服务器
+//        服务器
         else if (e instanceof ServerException) {
-            onErrorResponse(e.getMessage());
+//            onErrorResponse(e.getMessage());
+            onErrorResponse(ERROR_SERVER);
         }
-        //其它
+//        其它
         else {
-            onErrorResponse(BaseApplication.sContext.getString(R.string.net_error));
+            onErrorResponse(ERROR_SERVER);
         }
     }
 
@@ -84,6 +89,6 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
 
     protected abstract void onResponse(T t);
 
-    protected abstract void onErrorResponse(String message);
+    protected abstract void onErrorResponse(int message);
 
 }

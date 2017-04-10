@@ -8,5 +8,5 @@ public interface BaseView {
 
     void stopLoading();
 
-    void showErrorTip(String msg);
+    void showErrorTip(int msg);
 }

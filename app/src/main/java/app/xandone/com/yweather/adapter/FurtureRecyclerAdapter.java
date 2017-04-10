@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.List;
 import java.util.Map;
 
 import app.xandone.com.yweather.R;

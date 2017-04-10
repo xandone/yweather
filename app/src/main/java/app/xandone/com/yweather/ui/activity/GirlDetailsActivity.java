@@ -11,7 +11,6 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
-import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.adapter.GirlRecyclerAdapter;
 import app.xandone.com.yweather.config.StringRes;

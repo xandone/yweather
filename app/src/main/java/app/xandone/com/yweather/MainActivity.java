@@ -4,6 +4,7 @@ package app.xandone.com.yweather;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
@@ -11,14 +12,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.xandone.com.yweather.ui.base.BaseActivity;
-import app.xandone.com.yweather.ui.fragment.MainWeatherFragment;
-import app.xandone.com.yweather.ui.fragment.MainJokeFragment;
+import app.xandone.com.yweather.ui.fragment.LeftSlideFragment;
 import app.xandone.com.yweather.ui.fragment.MainGirlFragment;
+import app.xandone.com.yweather.ui.fragment.MainJokeFragment;
+import app.xandone.com.yweather.ui.fragment.MainWeatherFragment;
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCloseDrawerLayout {
     @BindView(R.id.main_foot_rg)
     RadioGroup main_foot_rg;
+    @BindView(R.id.drawerlayout)
+    DrawerLayout drawerlayout;
 
     private int mFragIndex;
     private Fragment mCurrentFrag;
@@ -72,5 +76,10 @@ public class MainActivity extends BaseActivity {
         }
         ft.commitAllowingStateLoss();
         mCurrentFrag = toFragment;
+    }
+
+    @Override
+    public void OnClose() {
+        drawerlayout.closeDrawers();
     }
 }

@@ -36,10 +36,12 @@
             android:id="@+id/current_temp_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="12dp"
             android:text="武汉"
             android:textColor="@color/light_tv_black"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/current_temp_tv"
@@ -69,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@+id/current_temp_city"
-            android:layout_toRightOf="@+id/current_temp_city"
+            android:layout_toEndOf="@+id/current_temp_tv"
+            android:layout_toRightOf="@+id/current_temp_tv"
             android:drawableLeft="@drawable/h_arrow"
             android:textColor="@color/light_tv_color"
             android:textSize="16sp"/>
@@ -79,16 +81,30 @@
 
     <!--<include layout="@layout/weahter_day" />-->
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/care_refresh"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/future_weather_recycle"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/care_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/future_weather_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <app.xandone.com.yweather.widget.LoadingLayout
+            android:id="@+id/future_weather_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+    </FrameLayout>
 </LinearLayout>

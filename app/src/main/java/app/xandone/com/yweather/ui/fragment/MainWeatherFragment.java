@@ -1,6 +1,10 @@
 package app.xandone.com.yweather.ui.fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,11 +31,13 @@ import app.xandone.com.yweather.bean.WeatherXmlData;
 import app.xandone.com.yweather.config.Config;
 import app.xandone.com.yweather.config.StringRes;
 import app.xandone.com.yweather.ui.base.BaseFragment;
+import app.xandone.com.yweather.ui.baserx.RxSubscriber;
 import app.xandone.com.yweather.ui.contract.WeatherDataContract;
 import app.xandone.com.yweather.ui.model.WeatherDataModel;
 import app.xandone.com.yweather.ui.presenter.WeatherDataPresenter;
 import app.xandone.com.yweather.utils.SpUtils;
 import app.xandone.com.yweather.utils.StringUtils;
+import app.xandone.com.yweather.widget.LoadingLayout;
 import app.xandone.com.yweather.widget.Rotate3dAnimation;
 import butterknife.BindView;
 
@@ -58,8 +66,8 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
     RecyclerView future_weather_recycle;
     @BindView(R.id.current_temp_city)
     TextView current_temp_city;
-
-    private String current_city;
+    @BindView(R.id.future_weather_loading)
+    LoadingLayout future_weather_loading;
 
     public static final int TYPE_DAY = 0;
     public static final int TYPE_NIGHT = 1;
@@ -69,10 +77,16 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
     private AlphaAnimation mAlphaAnimationDay;
     private AlphaAnimation mAlphaAnimationNight;
 
+    private String current_city;
+    private String current_city_code;
     private FurtureRecyclerAdapter mFurtureRecyclerAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private Map<String, WeatherXmlData> futureMap = new HashMap<>();
-    private static final int MAXLENGTH = 4;
+    private MyBroadCast myBroadCast;
+
+    private static final int MAX_LENGTH = 4;
+    public static final String ACTION_CAST = "action_cast";
+    public static final String ACTION_CAST_KEY = "action_cast_key";
 
     @Override
     protected int setLayout() {
@@ -96,7 +110,10 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
         future_weather_recycle.setLayoutManager(mLinearLayoutManager);
         future_weather_recycle.setAdapter(mFurtureRecyclerAdapter);
 
-        requestNetWeather(MAXLENGTH);
+        myBroadCast = new MyBroadCast();
+        IntentFilter ifilter = new IntentFilter();
+        ifilter.addAction(ACTION_CAST);
+        getActivity().registerReceiver(myBroadCast, ifilter);
 
         future_weather_recycle.post(new Runnable() {
             @Override
@@ -129,17 +146,46 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
             @Override
             public void run() {
                 current_city = SpUtils.getSpStringData(Config.APP_LOCATION_CITY, StringRes.CITY_NAME);
-                current_temp_city.setText(current_city);
+                requestNetWeather(MAX_LENGTH);
             }
         });
 
     }
 
+    /**
+     * 请求最近四天的天气数据
+     *
+     * @param len
+     */
+    public void requestNetWeather(int len) {
+        current_temp_city.setText(current_city);
+        try {
+            current_city_code = URLEncoder.encode(current_city, "gb2312").substring(0, 12);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.loading);
+        for (int i = 0; i < len; i++) {
+            mPresenter.requestWeatherXmlData(current_city_code, StringRes.PASSWORD, String.valueOf(i));
+        }
+    }
+
+    /**
+     * 数据结果
+     *
+     * @param weatherXmlData
+     * @param day
+     */
     @Override
     public void returnWeatherXmlData(WeatherXmlData weatherXmlData, String day) {
         futureMap.put(day, weatherXmlData);
         if (futureMap.get("0") != null) {
+            future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.finish);
+            future_weather_recycle.setVisibility(View.VISIBLE);
             showWeather(futureMap.get("0"), mTimeType);
+        } else {
+            future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.empty);
+            future_weather_recycle.setVisibility(View.INVISIBLE);
         }
         mFurtureRecyclerAdapter.notifyDataSetChanged();
     }
@@ -154,8 +200,20 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
     }
 
     @Override
-    public void showErrorTip(String msg) {
+    public void showErrorTip(int msg) {
         closeRefresh();
+        switch (msg) {
+            case RxSubscriber.ERROR_NET:
+                future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.error);
+                future_weather_recycle.setVisibility(View.INVISIBLE);
+                break;
+//            case RxSubscriber.ERROR_SERVER:
+//                future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.serverError);
+//                break;
+//            case RxSubscriber.ERROR_OTHER:
+//                future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.serverError);
+//                break;
+        }
     }
 
     /**
@@ -224,20 +282,9 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
         }
     }
 
-    /**
-     * 请求最近四天的天气数据
-     *
-     * @param len
-     */
-    public void requestNetWeather(int len) {
-        for (int i = 0; i < len; i++) {
-            mPresenter.requestWeatherXmlData(StringRes.CITY, StringRes.PASSWORD, String.valueOf(i));
-        }
-    }
-
     @Override
     public void onRefresh() {
-        requestNetWeather(MAXLENGTH);
+        requestNetWeather(MAX_LENGTH);
     }
 
     /**
@@ -266,5 +313,23 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
 
     public void setmTimeType(int mTimeType) {
         this.mTimeType = mTimeType;
+    }
+
+    class MyBroadCast extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent == null) {
+                return;
+            }
+            current_city = intent.getStringExtra(MainWeatherFragment.ACTION_CAST_KEY);
+            requestNetWeather(MAX_LENGTH);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(myBroadCast);
     }
 }

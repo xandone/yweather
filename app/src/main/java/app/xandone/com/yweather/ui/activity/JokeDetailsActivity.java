@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.adapter.JokeRecycleAdapter;
 import app.xandone.com.yweather.bean.JokerBean;

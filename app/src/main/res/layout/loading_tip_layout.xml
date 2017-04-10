@@ -22,7 +22,6 @@
         android:id="@+id/tv_tips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:text="加载中..."
         android:textColor="@color/light_tv_color"
         android:textSize="14sp"/>

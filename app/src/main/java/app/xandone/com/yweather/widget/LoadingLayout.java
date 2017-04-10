@@ -99,11 +99,11 @@ public class LoadingLayout extends LinearLayout {
                 img_tip_logo.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
                 if (StringUtils.isEmpty(errorMsg)) {
-                    tv_tips.setText("未知错误");
+                    tv_tips.setText("服务器错误");
                 } else {
                     tv_tips.setText(errorMsg);
                 }
-                img_tip_logo.setImageResource(R.drawable.icon_net_error);
+                img_tip_logo.setImageResource(R.drawable.icon_server_error);
                 break;
             case empty:
                 setVisibility(View.VISIBLE);
@@ -111,7 +111,7 @@ public class LoadingLayout extends LinearLayout {
                 progress.setVisibility(View.GONE);
                 tv_tips.setText("暂无数据");
                 if (nullPic <= 0) {
-                    img_tip_logo.setImageResource(R.drawable.icon_net_error);
+                    img_tip_logo.setImageResource(R.drawable.icon_error);
                 } else {
                     img_tip_logo.setImageResource(nullPic);
                 }
