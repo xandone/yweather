@@ -1,16 +1,20 @@
 package app.xandone.com.yweather.ui.fragment;
 
 
+import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -25,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import app.xandone.com.yweather.BaseApplication;
+import app.xandone.com.yweather.MainActivity;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.adapter.FurtureRecyclerAdapter;
 import app.xandone.com.yweather.bean.WeatherXmlData;
@@ -37,9 +42,11 @@ import app.xandone.com.yweather.ui.model.WeatherDataModel;
 import app.xandone.com.yweather.ui.presenter.WeatherDataPresenter;
 import app.xandone.com.yweather.utils.SpUtils;
 import app.xandone.com.yweather.utils.StringUtils;
+import app.xandone.com.yweather.utils.ToastUtils;
 import app.xandone.com.yweather.widget.LoadingLayout;
 import app.xandone.com.yweather.widget.Rotate3dAnimation;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by xandone on 2016/12/22.
@@ -83,6 +90,7 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
     private LinearLayoutManager mLinearLayoutManager;
     private Map<String, WeatherXmlData> futureMap = new HashMap<>();
     private MyBroadCast myBroadCast;
+    private MainActivity mActivity;
 
     private static final int MAX_LENGTH = 4;
     public static final String ACTION_CAST = "action_cast";
@@ -100,9 +108,12 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
 
     @Override
     protected void initView() {
-
+        mActivity = (MainActivity) getActivity();
         care_refresh.setColorSchemeResources(R.color.refresh_progress_3, R.color.refresh_progress_2, R.color.refresh_progress_1);
         care_refresh.setOnRefreshListener(this);
+        mActivity.setSupportActionBar(mToolbar);
+        mActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mActivity.getSupportActionBar().setHomeButtonEnabled(true);
         mToolbar.setTitle(StringRes.getStr(R.string.toolbar_title_yweather));
         mToolbar.setNavigationIcon(R.drawable.icon_more);
 
@@ -147,10 +158,10 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
             @Override
             public void run() {
                 current_city = SpUtils.getSpStringData(Config.APP_LOCATION_CITY, StringRes.CITY_NAME);
+                future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.loading);
                 requestNetWeather(MAX_LENGTH);
             }
         });
-
     }
 
     /**
@@ -164,8 +175,8 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
             current_city_code = URLEncoder.encode(current_city, "gb2312").substring(0, 12);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.empty);
         }
-        future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.loading);
         for (int i = 0; i < len; i++) {
             mPresenter.requestWeatherXmlData(current_city_code, StringRes.PASSWORD, String.valueOf(i));
         }

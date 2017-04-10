@@ -123,7 +123,7 @@ public class JokeWordsFragment extends BaseFragment implements SwipeRefreshLayou
                     joke_words_swipe.setRefreshing(false);
                 }
             }
-        }, 2000);
+        }, 1200);
     }
 
 }

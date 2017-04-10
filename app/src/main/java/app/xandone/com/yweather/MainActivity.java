@@ -4,7 +4,9 @@ package app.xandone.com.yweather;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import app.xandone.com.yweather.ui.fragment.LeftSlideFragment;
 import app.xandone.com.yweather.ui.fragment.MainGirlFragment;
 import app.xandone.com.yweather.ui.fragment.MainJokeFragment;
 import app.xandone.com.yweather.ui.fragment.MainWeatherFragment;
+import app.xandone.com.yweather.utils.ToastUtils;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCloseDrawerLayout {
@@ -81,5 +84,13 @@ public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCl
     @Override
     public void OnClose() {
         drawerlayout.closeDrawers();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            drawerlayout.openDrawer(GravityCompat.START);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
