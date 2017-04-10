@@ -34,11 +34,14 @@ public class LeftSlideFragment extends BaseFragment {
         context = getActivity();
     }
 
-    @OnClick({R.id.menu_1, R.id.foot_menu_set, R.id.foot_menu_exit})
+    @OnClick({R.id.menu_1, R.id.menu_2, R.id.foot_menu_set, R.id.foot_menu_exit})
     public void click(View v) {
         switch (v.getId()) {
             case R.id.menu_1:
                 context.startActivity(new Intent(context, ChooseCityActivity.class));
+                break;
+            case R.id.menu_2:
+                ToastUtils.showShort("关于...");
                 break;
             case R.id.foot_menu_set:
                 ToastUtils.showShort("设置...");

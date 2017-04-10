@@ -7,7 +7,7 @@ import app.xandone.com.yweather.R;
  * Created by xandone on 2017/1/9.
  */
 public class StringRes {
-    public static final String[] WEATHER_STATUS = {"晴", "多云", "雷阵雨", "阵雨", "阴", "中雨", "小雨", "大雨", "雨夹雪","暴雨"};
+    public static final String[] WEATHER_STATUS = {"晴", "多云", "雷阵雨", "阵雨", "阴", "中雨", "小雨", "大雨", "雨夹雪", "暴雨"};
     public static final int[] WEATHER_STATUS_ICON = {
             R.drawable.sun,
             R.drawable.cloudy,
@@ -23,6 +23,7 @@ public class StringRes {
 
     public static final String PASSWORD = "DJOYnieT8234jlsK";
     public static final String CITY = "%CE%E4%BA%BA";
+    public static final String CITY_NAME = "武汉";
 
     public static String getStr(int str) {
         return BaseApplication.getAppResources().getString(str);

@@ -9,8 +9,7 @@ import app.xandone.com.yweather.BaseApplication;
 /**
  * Created by xandone on 2016/12/22.
  */
-public class
-SpUtils {
+public class SpUtils {
     private static SharedPreferences sp;
 
     private static void init() {
@@ -83,6 +82,11 @@ SpUtils {
     public static String getSpStringData(String key) {
         init();
         return sp.getString(key, "");
+    }
+
+    public static String getSpStringData(String key, String defaultStr) {
+        init();
+        return sp.getString(key, defaultStr);
     }
 
     /**

@@ -1,6 +1,7 @@
 package app.xandone.com.yweather.ui.fragment;
 
 
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,11 +22,13 @@ import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.adapter.FurtureRecyclerAdapter;
 import app.xandone.com.yweather.bean.WeatherXmlData;
+import app.xandone.com.yweather.config.Config;
 import app.xandone.com.yweather.config.StringRes;
 import app.xandone.com.yweather.ui.base.BaseFragment;
 import app.xandone.com.yweather.ui.contract.WeatherDataContract;
 import app.xandone.com.yweather.ui.model.WeatherDataModel;
 import app.xandone.com.yweather.ui.presenter.WeatherDataPresenter;
+import app.xandone.com.yweather.utils.SpUtils;
 import app.xandone.com.yweather.utils.StringUtils;
 import app.xandone.com.yweather.widget.Rotate3dAnimation;
 import butterknife.BindView;
@@ -53,6 +56,10 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
     ImageView weather_title_bg_iv;
     @BindView(R.id.future_weather_recycle)
     RecyclerView future_weather_recycle;
+    @BindView(R.id.current_temp_city)
+    TextView current_temp_city;
+
+    private String current_city;
 
     public static final int TYPE_DAY = 0;
     public static final int TYPE_NIGHT = 1;
@@ -79,6 +86,7 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
 
     @Override
     protected void initView() {
+
         care_refresh.setColorSchemeResources(R.color.refresh_progress_3, R.color.refresh_progress_2, R.color.refresh_progress_1);
         care_refresh.setOnRefreshListener(this);
         mToolbar.setTitle(StringRes.getStr(R.string.toolbar_title_yweather));
@@ -115,6 +123,13 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
 
                     }
                 });
+            }
+        });
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                current_city = SpUtils.getSpStringData(Config.APP_LOCATION_CITY, StringRes.CITY_NAME);
+                current_temp_city.setText(current_city);
             }
         });
 

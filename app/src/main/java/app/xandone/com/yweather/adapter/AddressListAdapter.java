@@ -1,101 +1,98 @@
 package app.xandone.com.yweather.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
+import app.xandone.com.yweather.config.Config;
+import app.xandone.com.yweather.ui.activity.ChooseCityActivity;
+import app.xandone.com.yweather.utils.SpUtils;
+import app.xandone.com.yweather.utils.StringUtils;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-public class AddressListAdapter extends BaseAdapter {
-	private ArrayList<String> list;
-	private Context context;
+public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-	public static final int TYPE_ONE = 0;
-	public static final int TYPE_TWO = 1;
-	private static final int TYPE_COUNT = TYPE_TWO + 1;
+    private List<String> list;
+    private ChooseCityActivity mActivity;
+    private int current_type;
 
-	public AddressListAdapter(List<String> list, Context context) {
-		this.list = (ArrayList<String>) list;
-		this.context = context;
-	}
-	
-	@Override
-	public int getViewTypeCount() {
-		return TYPE_COUNT;
-	}
+    public static final int TYPE_P = 1;
+    public static final int TYPE_C = 2;
 
-	@Override
-	public int getItemViewType(int position) {
-		return position % 2 == 0 ? TYPE_ONE : TYPE_TWO;
-	}
+    public AddressListAdapter(List list, Activity activity, int type) {
+        this.list = list;
+        this.mActivity = (ChooseCityActivity) activity;
+        this.current_type = type;
+    }
 
-	@Override
-	public int getCount() {
-		return list.size();
-	}
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(BaseApplication.sContext).inflate(R.layout.address_list_item, parent, false);
+        return new AddressHolder(view);
+    }
 
-	@Override
-	public Object getItem(int position) {
-		return list.get(position);
-	}
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof AddressHolder) {
+            AddressHolder addressHolder = (AddressHolder) holder;
+            addressHolder.bindView(position);
+        }
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		int ViewType = getItemViewType(position);
-		if (ViewType == TYPE_ONE) {
-			return getViewOne(position, convertView, parent);
-		} else {
-			return getViewTwo(position, convertView, parent);
-		}
 
-	}
+    class AddressHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.addressItem_tv)
+        TextView addressItem_tv;
 
-	private View getViewTwo(int position, View convertView, ViewGroup parent) {
-		ViewHolder vh = null;
-		if (convertView == null) {
-			convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item2, parent, false);
-			vh = new ViewHolder(convertView);
-			convertView.setTag(vh);
-		} else {
-			vh = (ViewHolder) convertView.getTag();
-		}
+        public AddressHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
 
-		vh.addressItem.setText(list.get(position));
-		return convertView;
-	}
+        public void bindView(int positon) {
+            if (StringUtils.isEmpty(list.get(positon))) {
+                return;
+            }
+            addressItem_tv.setText(list.get(positon));
+        }
 
-	private View getViewOne(int position, View convertView, ViewGroup parent) {
-		ViewHolder vh = null;
-		if (convertView == null) {
-			convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, parent, false);
-			vh = new ViewHolder(convertView);
-			convertView.setTag(vh);
-		} else {
-			vh = (ViewHolder) convertView.getTag();
-		}
+        @OnClick({R.id.addressItem_root})
+        public void click(View view) {
+            switch (view.getId()) {
+                case R.id.addressItem_root:
+                    switch (current_type) {
+                        case TYPE_P:
+                            setOnGlideRecyclerListener(mActivity, getLayoutPosition());
+                            break;
+                        case TYPE_C:
+                            SpUtils.setSpStringData(Config.APP_LOCATION_CITY, list.get(getLayoutPosition()));
+                            break;
+                    }
+                    break;
+            }
+        }
+    }
 
-		vh.addressItem.setText(list.get(position));
-		return convertView;
-	}
+    public interface OnGlideRecyclerListener {
+        void OnGlide(int position);
+    }
 
-	private class ViewHolder {
-		TextView addressItem;
-
-		public ViewHolder(View view) {
-			addressItem = (TextView) view.findViewById(R.id.addressItem);
-		}
-	}
-
+    public void setOnGlideRecyclerListener(OnGlideRecyclerListener onGlideRecyclerListener, int position) {
+        onGlideRecyclerListener.OnGlide(position);
+    }
 }

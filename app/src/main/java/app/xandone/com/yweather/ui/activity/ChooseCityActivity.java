@@ -1,14 +1,13 @@
 package app.xandone.com.yweather.ui.activity;
 
 
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.adapter.AddressListAdapter;
 import app.xandone.com.yweather.data.db.DBHelper;
@@ -17,18 +16,18 @@ import app.xandone.com.yweather.ui.base.BaseActivity;
 import app.xandone.com.yweather.widget.GlideListView;
 import butterknife.BindView;
 
-public class ChooseCityActivity extends BaseActivity {
+public class ChooseCityActivity extends BaseActivity implements AddressListAdapter.OnGlideRecyclerListener {
 
     @BindView(R.id.province_listView)
-    ListView pListView;
+    RecyclerView pListView;
     @BindView(R.id.city_listView)
-    ListView cListView;
+    RecyclerView cListView;
     @BindView(R.id.rl)
     GlideListView glideListView;
 
-    public static final String CHOOSE_CITY = "choose_city";
-
-    private AddressListAdapter pAdapter, cAddress;
+    private AddressListAdapter pAdapter, cAdapter;
+    private LinearLayoutManager mLinearLayoutManager;
+    private LinearLayoutManager mLinearLayoutManager2;
     private ArrayList<String> pList;
     private ArrayList<String> cList;
     private List<Area> list;
@@ -45,14 +44,21 @@ public class ChooseCityActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        init();
+        initData();
+    }
+
+    public void init() {
         pList = new ArrayList<>();
         cList = new ArrayList<>();
-        pAdapter = new AddressListAdapter(pList, this);
-        cAddress = new AddressListAdapter(cList, this);
+        pAdapter = new AddressListAdapter(pList, this, AddressListAdapter.TYPE_P);
+        cAdapter = new AddressListAdapter(cList, this, AddressListAdapter.TYPE_C);
+        mLinearLayoutManager = new LinearLayoutManager(BaseApplication.sContext);
+        mLinearLayoutManager2 = new LinearLayoutManager(BaseApplication.sContext);
         pListView.setAdapter(pAdapter);
-        cListView.setAdapter(cAddress);
-        initData();
-        initEvent();
+        cListView.setAdapter(cAdapter);
+        pListView.setLayoutManager(mLinearLayoutManager);
+        cListView.setLayoutManager(mLinearLayoutManager2);
     }
 
     public void initData() {
@@ -60,26 +66,22 @@ public class ChooseCityActivity extends BaseActivity {
         for (Area name : list) {
             pList.add(name.getName());
         }
+        pAdapter.notifyDataSetChanged();
 
         List<Area> list2 = new DBHelper(this).getCity(list.get(0).getCode());
         for (Area name : list2) {
             cList.add(name.getName());
         }
+        cAdapter.notifyDataSetChanged();
     }
 
-    public void initEvent() {
-        pListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cList.clear();
-                for (Area name : new DBHelper(ChooseCityActivity.this).getCity(list.get(position).getCode())) {
-                    cList.add(name.getName());
-                }
-                cAddress.notifyDataSetChanged();
-                glideListView.yScroll(1000);
-            }
-        });
-
+    @Override
+    public void OnGlide(int position) {
+        cList.clear();
+        for (Area name : new DBHelper(ChooseCityActivity.this).getCity(list.get(position).getCode())) {
+            cList.add(name.getName());
+        }
+        cAdapter.notifyDataSetChanged();
+        glideListView.yScroll(1000);
     }
 }

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:orientation="horizontal" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/addressItem_root"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="@drawable/city_press_selector"
+                android:orientation="vertical">
 
     <TextView
-        android:id="@+id/addressItem"
+        android:id="@+id/addressItem_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="16sp" />
+        android:text="北京"
+        android:textColor="@color/light_tv_black"
+        android:textSize="16sp"/>
 
-</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divide_line"
+        />
+
+</RelativeLayout>

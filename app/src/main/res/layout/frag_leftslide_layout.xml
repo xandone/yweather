@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimary"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,19 +19,19 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/ic_launcher"
             app:civ_border_color="#FFEEEEEE"
-            app:civ_border_width="1dp" />
+            app:civ_border_width="1dp"/>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/user_icon_iv"
             android:layout_below="@id/user_icon_iv"
-            android:textColor="@color/white"
-            android:text="xandone" />
+            android:layout_marginTop="10dp"
+            android:text="xandone"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
-    <View style="@style/LeftSlideitem_view" />
+    <View style="@style/LeftSlideitem_view"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,11 +45,24 @@
 
             <ImageView
                 style="@style/LeftSlideitem_iv"
-                android:background="@drawable/icon_location" />
+                android:background="@drawable/icon_location"/>
 
             <TextView
                 style="@style/LeftSlideitem_tv"
-                android:text="城市" />
+                android:text="城市"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_2"
+            style="@style/LeftSlideitem_ll">
+
+            <ImageView
+                style="@style/LeftSlideitem_iv"
+                android:background="@drawable/icon_about"/>
+
+            <TextView
+                style="@style/LeftSlideitem_tv"
+                android:text="关于"/>
         </LinearLayout>
 
 
@@ -63,12 +76,12 @@
 
             <ImageView
                 style="@style/LeftSlideitem_iv"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@drawable/icon_set"/>
 
             <TextView
                 style="@style/LeftSlideitem_tv"
                 android:text="设置"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -78,12 +91,12 @@
             <ImageView
                 android:id="@+id/image"
                 style="@style/LeftSlideitem_iv"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@drawable/icon_out"/>
 
             <TextView
                 style="@style/LeftSlideitem_tv"
                 android:text="退出"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
         </LinearLayout>
     </LinearLayout>
 

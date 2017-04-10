@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar" />
+    <include layout="@layout/layout_toolbar"/>
 
     <RelativeLayout
         android:id="@+id/weather_title_rl"
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/y1"
             android:scaleType="centerCrop"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/current_weather_icon"
@@ -27,17 +27,30 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="10dp"
+            android:padding="6dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/heavy_rain" />
+            android:src="@drawable/heavy_rain"/>
+
+        <TextView
+            android:id="@+id/current_temp_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="武汉"
+            android:textColor="@color/light_tv_black"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/current_temp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
-            android:textSize="26sp" />
+            android:layout_marginLeft="10dp"
+            android:text="小雨"
+            android:textColor="@color/dark_black_color"
+            android:textSize="24sp"
+            />
 
         <TextView
             android:id="@+id/low_temp_tv"
@@ -48,18 +61,19 @@
             android:layout_below="@+id/high_temp_tv"
             android:drawableLeft="@drawable/l_arrow"
             android:textColor="@color/light_tv_color"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/high_temp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@+id/current_temp_tv"
-            android:layout_toRightOf="@+id/current_temp_tv"
+            android:layout_toEndOf="@+id/current_temp_city"
+            android:layout_toRightOf="@+id/current_temp_city"
             android:drawableLeft="@drawable/h_arrow"
             android:textColor="@color/light_tv_color"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 
@@ -75,6 +89,6 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/future_weather_recycle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

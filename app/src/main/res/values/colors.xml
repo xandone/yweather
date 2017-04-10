@@ -21,8 +21,10 @@
     <color name="light_tv_color">#A0A6A5</color>
     <color name="light_tv_black">#6A6868</color>
     <color name="middle_tv_black">#535252</color>
+    <color name="dark_black_color">#343434</color>
 
     <color name="brightWhite">#ebeceb</color>
     <color name="divide_line">#ccc</color>
+    <color name="ll_press_line">#CFF1F2</color>
 
 </resources>
