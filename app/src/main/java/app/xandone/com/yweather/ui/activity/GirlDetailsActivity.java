@@ -83,7 +83,7 @@ public class GirlDetailsActivity extends BaseActivity {
     public void saveImg() {
         new Thread(new DownLoadImg(img_url, new DownLoadImgInterf() {
             @Override
-            public void saveSuccess() {
+            public void saveSuccess(String name) {
                 Message msg = Message.obtain();
                 msg.what = 1;
                 mHandle.sendMessage(msg);

@@ -6,6 +6,12 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+
+import java.io.File;
+
+import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.MainActivity;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.service.CheckAdService;
@@ -21,6 +27,7 @@ public class LaunchActivity extends BaseActivity {
     ImageView launch_iv;
 
     private boolean isDownLoad;
+    private RequestManager requestManager;
 
     @Override
     public int setLayout() {
@@ -34,14 +41,24 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        requestManager = Glide.with(BaseApplication.sContext);
         initAd();
         launcAnim(launch_iv);
+    }
+
+    public void initService() {
+        Intent intent = new Intent(this, CheckAdService.class);
+        startService(intent);
     }
 
     public void initAd() {
         isDownLoad = SpUtils.getSpBooleanData(CheckAdService.AD_ISDOWN_KEY);
         if (isDownLoad) {
-
+            File file = new File(SpUtils.getSpStringData(CheckAdService.AD_IMG_KEY));
+            if (!file.exists()) {
+                return;
+            }
+            requestManager.load(file).into(launch_iv);
         }
     }
 
@@ -59,6 +76,7 @@ public class LaunchActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+                initService();
                 finish();
             }
 

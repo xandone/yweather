@@ -3,6 +3,7 @@ package app.xandone.com.yweather.utils;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -24,6 +25,7 @@ public class DownLoadImg implements Runnable {
     private RequestManager requestManager;
     private DownLoadImgInterf downLoadImgInterf;
     private File currentFile;
+    private String imgName;
 
     public DownLoadImg(String url, DownLoadImgInterf downLoadImgInterf) {
         this.url = url;
@@ -49,7 +51,7 @@ public class DownLoadImg implements Runnable {
             if (bitmap != null && currentFile.exists()) {
                 BaseApplication.sContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
                         Uri.fromFile(new File(currentFile.getPath()))));
-                downLoadImgInterf.saveSuccess();
+                downLoadImgInterf.saveSuccess(imgName);
             } else {
                 BaseApplication.sContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
                         Uri.fromFile(new File(currentFile.getPath()))));
@@ -63,8 +65,11 @@ public class DownLoadImg implements Runnable {
         if (!imgDir.exists()) {
             imgDir.mkdirs();
         }
-        String imgName = System.currentTimeMillis() + ".jpg";
-        currentFile = new File(imgDir, imgName);
+        String name = System.currentTimeMillis() + ".jpg";
+        currentFile = new File(imgDir, name);
+        imgName = currentFile.getPath();
+        Log.d("xandone", imgName);
+
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(currentFile);

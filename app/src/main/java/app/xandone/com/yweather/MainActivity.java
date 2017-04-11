@@ -12,6 +12,8 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import app.xandone.com.yweather.ui.base.BaseActivity;
 import app.xandone.com.yweather.ui.fragment.LeftSlideFragment;
@@ -30,6 +32,7 @@ public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCl
     private int mFragIndex;
     private Fragment mCurrentFrag;
     private List<Fragment> fragList;
+    private boolean isState = true;
 
     @Override
     public int setLayout() {
@@ -92,5 +95,21 @@ public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCl
             drawerlayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isState) {
+            isState = false;
+            ToastUtils.showShort("再按一次退出");
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isState = true;
+                }
+            }, 2000);
+        } else {
+            AppManager.newInstance().finishAllActivity();
+        }
     }
 }
