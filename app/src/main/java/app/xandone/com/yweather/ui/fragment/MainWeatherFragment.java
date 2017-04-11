@@ -1,20 +1,16 @@
 package app.xandone.com.yweather.ui.fragment;
 
 
-import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
-import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -42,11 +38,9 @@ import app.xandone.com.yweather.ui.model.WeatherDataModel;
 import app.xandone.com.yweather.ui.presenter.WeatherDataPresenter;
 import app.xandone.com.yweather.utils.SpUtils;
 import app.xandone.com.yweather.utils.StringUtils;
-import app.xandone.com.yweather.utils.ToastUtils;
 import app.xandone.com.yweather.widget.LoadingLayout;
 import app.xandone.com.yweather.widget.Rotate3dAnimation;
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by xandone on 2016/12/22.
@@ -238,27 +232,36 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
             return;
         }
         if (timeType == TYPE_DAY) {
+            String myWeather = weatherXmlData.getStatus1();
+            if (StringUtils.isEmpty(myWeather)) {
+                return;
+            }
+            int status = StringUtils.findIndex(StringRes.WEATHER_STATUS, myWeather);
+            if (status == -1) {
+                current_weather_icon.setImageResource(R.drawable.ic_launcher);
+            }
+            current_weather_icon.setImageResource(StringRes.WEATHER_STATUS_ICON[status]);
             current_temp_tv.setText(weatherXmlData.getStatus1());
             high_temp_tv.setText(weatherXmlData.getTemperature1() + "℃");
             low_temp_tv.setText(weatherXmlData.getTemperature2() + "℃");
             high_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.light_tv_color));
             low_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.light_tv_color));
         } else {
+            String myWeather = weatherXmlData.getStatus2();
+            if (StringUtils.isEmpty(myWeather)) {
+                return;
+            }
+            int status = StringUtils.findIndex(StringRes.WEATHER_STATUS, myWeather);
+            if (status == -1) {
+                current_weather_icon.setImageResource(R.drawable.ic_launcher);
+            }
+            current_weather_icon.setImageResource(StringRes.WEATHER_STATUS_ICON[status]);
             current_temp_tv.setText(weatherXmlData.getStatus2());
             high_temp_tv.setText(weatherXmlData.getTemperature1() + "℃");
             low_temp_tv.setText(weatherXmlData.getTemperature2() + "℃");
             high_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.white));
             low_temp_tv.setTextColor(ContextCompat.getColor(BaseApplication.sContext, R.color.white));
         }
-        String myWeather = weatherXmlData.getStatus1();
-        if (StringUtils.isEmpty(myWeather)) {
-            return;
-        }
-        int status = StringUtils.findIndex(StringRes.WEATHER_STATUS, myWeather);
-        if (status == -1) {
-            current_weather_icon.setImageResource(R.drawable.ic_launcher);
-        }
-        current_weather_icon.setImageResource(StringRes.WEATHER_STATUS_ICON[status]);
     }
 
     /**
