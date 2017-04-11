@@ -27,6 +27,7 @@
         <activity android:name=".ui.activity.JokeDetailsActivity"/>
         <activity android:name=".ui.activity.GirlDetailsActivity"/>
         <activity android:name=".ui.activity.ChooseCityActivity"/>
+        <activity android:name=".ui.activity.JokeImageDetailsActivity"/>
 
         <service
             android:name=".service.CheckAdService"

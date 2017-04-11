@@ -69,7 +69,6 @@ public class JokeWordsFragment extends BaseFragment implements SwipeRefreshLayou
         joke_words_recycle.setAdapter(mJokeRecycleAdapter);
 
         getDataFromWdog(mRef);
-        startLoadingDialog();
     }
 
     public void initWilddog() {
@@ -90,19 +89,17 @@ public class JokeWordsFragment extends BaseFragment implements SwipeRefreshLayou
                 for (Object obj : list) {
                     Map<String, String> o = (Map<String, String>) obj;
                     if (!StringUtils.isEmpty(o.get("title"))) {
-                        jokeList.add(new JokerBean(o.get("title"), o.get("content"), o.get("url")));
+                        jokeList.add(new JokerBean(o.get("title"), o.get("content"), o.get("url"), o.get("mydate")));
                     }
                 }
                 mJokeRecycleAdapter.notifyDataSetChanged();
                 closeRefresh();
-                stopLoadingDialog();
             }
 
             @Override
             public void onCancelled(SyncError syncError) {
                 Log.d("xandone", syncError.toString());
                 closeRefresh();
-                stopLoadingDialog();
             }
         });
     }

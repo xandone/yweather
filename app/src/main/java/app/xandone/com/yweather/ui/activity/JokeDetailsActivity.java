@@ -26,6 +26,8 @@ public class JokeDetailsActivity extends BaseActivity {
     TextView joke_details_content;
     @BindView(R.id.joke_details_comeOn_icon)
     ImageView joke_details_comeOn_icon;
+    @BindView(R.id.joke_details_content_date)
+    TextView joke_details_content_date;
     @BindView(R.id.toolBar)
     Toolbar mToolbar;
 
@@ -62,6 +64,7 @@ public class JokeDetailsActivity extends BaseActivity {
         }
         joke_details_title.setText(mJokerBean.getTitle());
         joke_details_content.setText(mJokerBean.getContent());
+        joke_details_content_date.setText(mJokerBean.getMydate());
     }
 
     @OnClick({R.id.joke_details_comeOn_icon})

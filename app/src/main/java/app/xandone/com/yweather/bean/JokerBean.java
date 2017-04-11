@@ -9,11 +9,13 @@ public class JokerBean implements Serializable {
     private String title;
     private String content;
     private String url;
+    private String mydate;
 
-    public JokerBean(String title, String content, String url) {
+    public JokerBean(String title, String content, String url, String mydate) {
         this.title = title;
         this.content = content;
         this.url = url;
+        this.mydate = mydate;
     }
 
     public String getTitle() {
@@ -38,5 +40,13 @@ public class JokerBean implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getMydate() {
+        return mydate;
+    }
+
+    public void setMydate(String mydate) {
+        this.mydate = mydate;
     }
 }

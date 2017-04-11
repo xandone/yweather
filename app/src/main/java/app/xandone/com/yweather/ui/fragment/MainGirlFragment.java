@@ -26,6 +26,7 @@ import app.xandone.com.yweather.api.ApiConstants;
 import app.xandone.com.yweather.bean.PicBean;
 import app.xandone.com.yweather.config.StringRes;
 import app.xandone.com.yweather.ui.base.BaseFragment;
+import app.xandone.com.yweather.utils.StringUtils;
 import butterknife.BindView;
 
 /**
@@ -140,7 +141,9 @@ public class MainGirlFragment extends BaseFragment implements SwipeRefreshLayout
                 picList.clear();
                 for (Object obj : list) {
                     Map<String, String> o = (Map<String, String>) obj;
-                    picList.add(new PicBean(o.get("url")));
+                    if (!StringUtils.isEmpty(o.get("url"))) {
+                        picList.add(new PicBean(o.get("url")));
+                    }
                 }
                 if (isInit) {
                     for (int i = 0; i < GirlRecyclerAdapter.ONECE_LOAD; i++) {
@@ -180,10 +183,6 @@ public class MainGirlFragment extends BaseFragment implements SwipeRefreshLayout
                 }
             }
         }, 1200);
-    }
-
-    public void loadMoreGirl() {
-
     }
 
 }
