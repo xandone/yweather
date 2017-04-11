@@ -62,13 +62,13 @@ public class ChooseCityActivity extends BaseActivity implements AddressListAdapt
     }
 
     public void initData() {
-        list = new DBHelper(this).getProvince();
+        list = DBHelper.newInstance(this).getProvince();
         for (Area name : list) {
             pList.add(name.getName());
         }
         pAdapter.notifyDataSetChanged();
 
-        List<Area> list2 = new DBHelper(this).getCity(list.get(0).getCode());
+        List<Area> list2 = DBHelper.newInstance(this).getCity(list.get(0).getCode());
         for (Area name : list2) {
             cList.add(name.getName());
         }
@@ -78,7 +78,7 @@ public class ChooseCityActivity extends BaseActivity implements AddressListAdapt
     @Override
     public void OnGlide(int position) {
         cList.clear();
-        for (Area name : new DBHelper(ChooseCityActivity.this).getCity(list.get(position).getCode())) {
+        for (Area name : DBHelper.newInstance(ChooseCityActivity.this).getCity(list.get(position).getCode())) {
             cList.add(name.getName());
         }
         cAdapter.notifyDataSetChanged();

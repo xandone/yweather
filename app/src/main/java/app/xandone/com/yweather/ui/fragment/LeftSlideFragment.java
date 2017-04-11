@@ -42,7 +42,7 @@ public class LeftSlideFragment extends BaseFragment {
                 mActivity.startActivity(new Intent(mActivity, ChooseCityActivity.class));
                 break;
             case R.id.menu_2:
-                ToastUtils.showShort("关于...");
+                ToastUtils.showShort("by xandone...");
                 break;
             case R.id.foot_menu_set:
                 ToastUtils.showShort("设置...");
