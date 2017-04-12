@@ -1,8 +1,9 @@
 # yweather
 ## 一款简约风格的app
 ### 一、说明：
-最近闲暇时间写了款比较简约风格的小app
+1.最近闲暇时间写了款比较简约风格的小app</br> 
 包含模块：天气、妹纸、笑话，该app适合个人练手玩玩</br> 
+2.代码更新后，会日更平时看到的笑话或者有趣图片，分享好心情~
 ### 二、效果图（gif）：
 ![](https://github.com/xandone/yweather/blob/master/yweather_gif/001.gif)
 ![](https://github.com/xandone/yweather/blob/master/yweather_gif/002.gif)
