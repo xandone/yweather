@@ -32,6 +32,8 @@ public class ChooseCityActivity extends BaseActivity implements AddressListAdapt
     private ArrayList<String> cList;
     private List<Area> list;
 
+    private OnGlideRecycler onGlideRecycler;
+
     @Override
     public int setLayout() {
         return R.layout.activity_choice_city;
@@ -49,10 +51,11 @@ public class ChooseCityActivity extends BaseActivity implements AddressListAdapt
     }
 
     public void init() {
+        onGlideRecycler = new OnGlideRecycler();
         pList = new ArrayList<>();
         cList = new ArrayList<>();
-        pAdapter = new AddressListAdapter(pList, this, AddressListAdapter.TYPE_P);
-        cAdapter = new AddressListAdapter(cList, this, AddressListAdapter.TYPE_C);
+        pAdapter = new AddressListAdapter(pList, this, onGlideRecycler, AddressListAdapter.TYPE_P);
+        cAdapter = new AddressListAdapter(cList, this, onGlideRecycler, AddressListAdapter.TYPE_C);
         mLinearLayoutManager = new LinearLayoutManager(BaseApplication.sContext);
         mLinearLayoutManager2 = new LinearLayoutManager(BaseApplication.sContext);
         pListView.setAdapter(pAdapter);
@@ -74,6 +77,21 @@ public class ChooseCityActivity extends BaseActivity implements AddressListAdapt
         }
         cAdapter.notifyDataSetChanged();
     }
+
+
+    public class OnGlideRecycler implements AddressListAdapter.OnGlideRecyclerListener {
+
+        @Override
+        public void OnGlide(int position) {
+            cList.clear();
+            for (Area name : DBHelper.newInstance(ChooseCityActivity.this).getCity(list.get(position).getCode())) {
+                cList.add(name.getName());
+            }
+            cAdapter.notifyDataSetChanged();
+            glideListView.yScroll(1000);
+        }
+    }
+
 
     @Override
     public void OnGlide(int position) {

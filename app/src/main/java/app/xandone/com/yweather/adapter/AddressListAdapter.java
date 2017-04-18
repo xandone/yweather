@@ -27,13 +27,15 @@ public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<String> list;
     private ChooseCityActivity mActivity;
     private int current_type;
+    private OnGlideRecyclerListener onGlideRecyclerListener;
 
     public static final int TYPE_P = 1;
     public static final int TYPE_C = 2;
 
-    public AddressListAdapter(List list, Activity activity, int type) {
+    public AddressListAdapter(List list, Activity activity, OnGlideRecyclerListener onGlideRecyclerListener, int type) {
         this.list = list;
         this.mActivity = (ChooseCityActivity) activity;
+        this.onGlideRecyclerListener = onGlideRecyclerListener;
         this.current_type = type;
     }
 
@@ -79,7 +81,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 case R.id.addressItem_root:
                     switch (current_type) {
                         case TYPE_P:
-                            setOnGlideRecyclerListener(mActivity, getLayoutPosition());
+                            setOnGlideRecyclerListener(onGlideRecyclerListener, getLayoutPosition());
                             break;
                         case TYPE_C:
                             SpUtils.setSpStringData(Config.APP_LOCATION_CITY, list.get(getLayoutPosition()));
