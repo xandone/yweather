@@ -11,12 +11,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
+import java.io.Serializable;
 import java.util.List;
 
 import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.bean.JokeImageBean;
-import app.xandone.com.yweather.ui.activity.JokeImageDetailsActivity;
+import app.xandone.com.yweather.ui.activity.JokePagerActivity;
 import app.xandone.com.yweather.utils.ImageLoader;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,7 @@ import butterknife.OnClick;
  */
 public class JokeImageRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String JOKEIMAGERECYCLERADAPTER_URL = "JokeImageRecyclerAdapter_url";
+    public static final String JOKEIMAGERECYCLERADAPTER_NUM = "JokeImageRecyclerAdapter_num";
     public static final int TYPE_FOOT = 1;
     public static final int TYPE_NORMAL = 2;
 
@@ -91,8 +93,10 @@ public class JokeImageRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.joke_photo_item_rl:
-                    Intent intent = new Intent(mContext, JokeImageDetailsActivity.class);
-                    intent.putExtra(JOKEIMAGERECYCLERADAPTER_URL, list.get(getLayoutPosition()).getJoke_img());
+                    Intent intent = new Intent(mContext, JokePagerActivity.class);
+//                    intent.putExtra(JOKEIMAGERECYCLERADAPTER_URL, list.get(getLayoutPosition()).getJoke_img());
+                    intent.putExtra(JOKEIMAGERECYCLERADAPTER_URL, (Serializable) list);
+                    intent.putExtra(JOKEIMAGERECYCLERADAPTER_NUM, getLayoutPosition());
                     mContext.startActivity(intent);
                     break;
             }

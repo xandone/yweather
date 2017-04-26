@@ -1,9 +1,11 @@
 package app.xandone.com.yweather.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by xandone on 2017/1/12.
  */
-public class JokeImageBean {
+public class JokeImageBean implements Serializable{
     private String joke_img;
 
     public JokeImageBean(String joke_img) {
