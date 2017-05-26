@@ -1,6 +1,6 @@
 package app.xandone.com.yweather.adapter;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import java.util.List;
 import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.config.Config;
-import app.xandone.com.yweather.ui.activity.ChooseCityActivity;
 import app.xandone.com.yweather.ui.fragment.MainWeatherFragment;
 import app.xandone.com.yweather.utils.SpUtils;
 import app.xandone.com.yweather.utils.StringUtils;
@@ -25,16 +24,16 @@ import butterknife.OnClick;
 public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<String> list;
-    private ChooseCityActivity mActivity;
+    private Context mActivity;
     private int current_type;
     private OnGlideRecyclerListener onGlideRecyclerListener;
 
     public static final int TYPE_P = 1;
     public static final int TYPE_C = 2;
 
-    public AddressListAdapter(List list, Activity activity, OnGlideRecyclerListener onGlideRecyclerListener, int type) {
+    public AddressListAdapter(List list, Context activity, OnGlideRecyclerListener onGlideRecyclerListener, int type) {
         this.list = list;
-        this.mActivity = (ChooseCityActivity) activity;
+        this.mActivity = activity;
         this.onGlideRecyclerListener = onGlideRecyclerListener;
         this.current_type = type;
     }
@@ -88,7 +87,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             Intent intent = new Intent(MainWeatherFragment.ACTION_CAST);
                             intent.putExtra(MainWeatherFragment.ACTION_CAST_KEY, list.get(getLayoutPosition()));
                             mActivity.sendBroadcast(intent);
-                            mActivity.finish();
+                            onGlideRecyclerListener.onFinish();
                             break;
                     }
                     break;
@@ -98,6 +97,8 @@ public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public interface OnGlideRecyclerListener {
         void OnGlide(int position);
+
+        void onFinish();
     }
 
     public void setOnGlideRecyclerListener(OnGlideRecyclerListener onGlideRecyclerListener, int position) {

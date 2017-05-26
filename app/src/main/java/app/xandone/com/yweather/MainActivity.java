@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCl
     RadioGroup main_foot_rg;
     @BindView(R.id.drawerlayout)
     DrawerLayout drawerlayout;
+    @BindView(R.id.main_frame)
+    FrameLayout main_frame;
 
     private int mFragIndex;
     private Fragment mCurrentFrag;
@@ -45,6 +48,12 @@ public class MainActivity extends BaseActivity implements LeftSlideFragment.OnCl
 
     @Override
     public void initView() {
+        main_frame.post(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
         mFragIndex = 0;
         fragList = new ArrayList<Fragment>(Arrays.asList(new MainWeatherFragment(), new MainGirlFragment(), new MainJokeFragment()));
         turnToFrag();

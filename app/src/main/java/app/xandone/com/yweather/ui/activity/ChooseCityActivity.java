@@ -16,7 +16,7 @@ import app.xandone.com.yweather.ui.base.BaseActivity;
 import app.xandone.com.yweather.widget.GlideListView;
 import butterknife.BindView;
 
-public class ChooseCityActivity extends BaseActivity implements AddressListAdapter.OnGlideRecyclerListener {
+public class ChooseCityActivity extends BaseActivity {
 
     @BindView(R.id.province_listView)
     RecyclerView pListView;
@@ -90,16 +90,10 @@ public class ChooseCityActivity extends BaseActivity implements AddressListAdapt
             cAdapter.notifyDataSetChanged();
             glideListView.yScroll(1000);
         }
-    }
 
-
-    @Override
-    public void OnGlide(int position) {
-        cList.clear();
-        for (Area name : DBHelper.newInstance(ChooseCityActivity.this).getCity(list.get(position).getCode())) {
-            cList.add(name.getName());
+        @Override
+        public void onFinish() {
+            finish();
         }
-        cAdapter.notifyDataSetChanged();
-        glideListView.yScroll(1000);
     }
 }
