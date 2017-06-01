@@ -7,17 +7,26 @@
     <include layout="@layout/layout_toolbar" />
 
     <ScrollView
+        android:id="@+id/joke_details_title_sv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/joke_details_title_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
             <RelativeLayout
                 android:id="@+id/joke_details_title_rl"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/joke_details_title_img"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_card"
                 android:padding="10dp">
