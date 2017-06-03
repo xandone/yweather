@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,10 @@ public class JokeDetailsActivity extends BaseActivity {
     public static final float SCALE_VALUE = 0.6f;
     private int img_w, img_h;
 
+    private DisplayMetrics metric;
+    private float mFirstPosition = 0;
+    private Boolean mScaling = false;
+
     @Override
     public int setLayout() {
         return R.layout.activity_joke_details;
@@ -72,6 +77,10 @@ public class JokeDetailsActivity extends BaseActivity {
             }
         });
         getDetailData();
+
+        metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+
         initEvent();
     }
 
@@ -95,29 +104,27 @@ public class JokeDetailsActivity extends BaseActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 ViewGroup.LayoutParams lp = joke_details_title_img.getLayoutParams();
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_UP:
+                        mScaling = false;
+                        animImg();
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        if (!isScaling) {
-                            if (joke_details_title_sv.getScaleY() == 0) {
-                                mStation = event.getY();
+                        if (!mScaling) {
+                            if (joke_details_title_sv.getScrollY() == 0) {
+                                mFirstPosition = event.getY();
                             } else {
                                 break;
                             }
                         }
-                        int distance = (int) ((event.getY() - mStation) * SCALE_VALUE);
+                        int distance = (int) ((event.getY() - mFirstPosition) * 0.6);
                         if (distance < 0) {
                             break;
                         }
-                        isScaling = true;
-                        lp.width = img_w + distance;
-                        lp.height = img_w + distance;
+                        mScaling = true;
+                        lp.width = metric.widthPixels + distance;
+                        lp.height = (metric.widthPixels + distance) * 9 / 16;
                         joke_details_title_img.setLayoutParams(lp);
                         return true;
-                    case MotionEvent.ACTION_UP:
-                        isScaling = false;
-                        animImg();
-                        break;
                 }
                 return false;
             }
