@@ -12,13 +12,18 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+
 import java.util.Random;
 
+import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.adapter.JokeRecycleAdapter;
 import app.xandone.com.yweather.bean.JokerBean;
 import app.xandone.com.yweather.config.StringRes;
 import app.xandone.com.yweather.ui.base.BaseActivity;
+import app.xandone.com.yweather.utils.ImageLoader;
 import app.xandone.com.yweather.utils.Utils;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,14 +50,13 @@ public class JokeDetailsActivity extends BaseActivity {
     private JokerBean mJokerBean;
     private String[] mComeOnStringList;
     private Random mRandom;
-    private float mStation;
-    private boolean isScaling;
     public static final float SCALE_VALUE = 0.6f;
     private int img_w, img_h;
 
     private DisplayMetrics metric;
     private float mFirstPosition = 0;
     private Boolean mScaling = false;
+    private RequestManager requestManager;
 
     @Override
     public int setLayout() {
@@ -66,6 +70,7 @@ public class JokeDetailsActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        requestManager = Glide.with(BaseApplication.sContext);
         mComeOnStringList = StringRes.getStrArrays(R.array.come_on_string);
         mRandom = new Random();
         mToolbar.setTitle(StringRes.getStr(R.string.toolbar_title_joke));
@@ -96,6 +101,7 @@ public class JokeDetailsActivity extends BaseActivity {
         joke_details_title.setText(mJokerBean.getTitle());
         joke_details_content.setText(mJokerBean.getContent());
         joke_details_content_date.setText(mJokerBean.getMydate());
+        ImageLoader.loadImage(requestManager, joke_details_title_img, mJokerBean.getUrl());
     }
 
     public void initEvent() {
@@ -116,13 +122,13 @@ public class JokeDetailsActivity extends BaseActivity {
                                 break;
                             }
                         }
-                        int distance = (int) ((event.getY() - mFirstPosition) * 0.6);
+                        int distance = (int) ((event.getY() - mFirstPosition) * SCALE_VALUE);
                         if (distance < 0) {
                             break;
                         }
                         mScaling = true;
-                        lp.width = metric.widthPixels + distance;
-                        lp.height = (metric.widthPixels + distance) * 9 / 16;
+                        lp.width = img_w + distance;
+                        lp.height = img_h + distance;
                         joke_details_title_img.setLayoutParams(lp);
                         return true;
                 }
