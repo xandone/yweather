@@ -109,4 +109,8 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="Theme_Umeng_Push_Splash" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/launch_bg</item>
+    </style>
+
 </resources>

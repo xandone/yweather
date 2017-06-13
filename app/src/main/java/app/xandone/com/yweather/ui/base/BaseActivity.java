@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.PushAgent;
 
 import app.xandone.com.yweather.AppManager;
 import app.xandone.com.yweather.BuildConfig;
@@ -27,6 +28,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         super.onCreate(savedInstanceState);
         doBefore();
         setContentView(setLayout());
+        PushAgent.getInstance(getApplicationContext()).onAppStart();
         ButterKnife.bind(this);
         mPresenter = TUtils.getT(this, 0);
         mModel = TUtils.getT(this, 1);

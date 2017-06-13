@@ -16,7 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.activity.LaunchActivity">
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="593f8a98f43e4872720019dd">
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="d39c66dc931ee00a8e6323642c744b6d">
+        </meta-data>
+
+        <activity
+            android:name=".ui.activity.LaunchActivity"
+            android:theme="@style/Theme_Umeng_Push_Splash"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

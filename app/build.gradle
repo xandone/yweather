@@ -71,4 +71,5 @@ dependencies {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
+    compile project(':PushSDK')
 }
