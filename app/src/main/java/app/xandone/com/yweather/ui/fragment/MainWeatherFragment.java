@@ -11,6 +11,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -115,6 +118,7 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
         mLinearLayoutManager = new LinearLayoutManager(BaseApplication.sContext);
         future_weather_recycle.setLayoutManager(mLinearLayoutManager);
         future_weather_recycle.setAdapter(mFurtureRecyclerAdapter);
+        setHasOptionsMenu(true);
 
         myBroadCast = new MyBroadCast();
         IntentFilter ifilter = new IntentFilter();
@@ -154,6 +158,23 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
                 current_city = SpUtils.getSpStringData(Config.APP_LOCATION_CITY, StringRes.CITY_NAME);
                 future_weather_loading.setLoadingTips(LoadingLayout.LoadStatus.loading);
                 requestNetWeather(MAX_LENGTH);
+            }
+        });
+
+//        mToolbar.inflateMenu(R.menu.main_menu);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.main_menu_share:
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.main_menu_share));
+                        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.main_menu_share_yweahter));
+                        startActivity(Intent.createChooser(intent, mActivity.getTitle()));
+                        break;
+                }
+                return true;
             }
         });
     }
@@ -347,4 +368,11 @@ public class MainWeatherFragment extends BaseFragment<WeatherDataPresenter, Weat
         super.onDestroy();
         getActivity().unregisterReceiver(myBroadCast);
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_menu, menu);
+    }
+
 }
