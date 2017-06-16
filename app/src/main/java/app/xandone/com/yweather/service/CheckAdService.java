@@ -118,7 +118,6 @@ public class CheckAdService extends Service {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1) {
-                Log.d("xandone", "下载成功");
                 Bundle b = msg.getData();
                 if (b == null || StringUtils.isEmpty((String) b.get("name"))) {
                     return;
@@ -126,7 +125,6 @@ public class CheckAdService extends Service {
                 SpUtils.setSpStringData(AD_IMG_KEY, (String) b.get("name"));
                 SpUtils.setSpBooleanData(AD_ISDOWN_KEY, true);
             } else if (msg.what == 2) {
-                Log.d("xandone", "下载失败");
                 SpUtils.setSpBooleanData(AD_ISDOWN_KEY, false);
             }
             stopSelf();

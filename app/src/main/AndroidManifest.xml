@@ -25,9 +25,19 @@
             android:value="d39c66dc931ee00a8e6323642c744b6d">
         </meta-data>
 
+        <!--<activity-->
+        <!--android:name=".ui.activity.LaunchActivity2"-->
+        <!--android:theme="@style/Theme_Umeng_Push_Splash"-->
+        <!--&gt;-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+
         <activity
             android:name=".ui.activity.LaunchActivity"
-            android:theme="@style/Theme_Umeng_Push_Splash"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -8,8 +8,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.umeng.message.inapp.InAppMessageManager;
-import com.umeng.message.inapp.UmengSplashMessageActivity;
 
 import java.io.File;
 
@@ -17,13 +15,15 @@ import app.xandone.com.yweather.BaseApplication;
 import app.xandone.com.yweather.MainActivity;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.service.CheckAdService;
+import app.xandone.com.yweather.ui.base.BaseActivity;
 import app.xandone.com.yweather.utils.SpUtils;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2017/1/13.
+ * Created by xandone on 2017/6/16.
  */
-public class LaunchActivity extends UmengSplashMessageActivity {
+
+public class LaunchActivity extends BaseActivity{
     @BindView(R.id.launch_iv)
     ImageView launch_iv;
 
@@ -31,25 +31,16 @@ public class LaunchActivity extends UmengSplashMessageActivity {
     private RequestManager requestManager;
 
     @Override
-    public boolean onCustomPretreatment() {
-        InAppMessageManager mInAppMessageManager = InAppMessageManager.getInstance(this);
-        //设置应用内消息为Debug模式
-        mInAppMessageManager.setInAppMsgDebugMode(true);
-        mInAppMessageManager.setMainActivityPath("app.xandone.com.yweather.MainActivity");
-        return super.onCustomPretreatment();
+    public int setLayout() {
+        return R.layout.activity_launch;
     }
 
-    //    @Override
-//    public int setLayout() {
-//        return R.layout.activity_launch;
-//    }
-//
-//    @Override
-//    public void initPresenter() {
-//
-//    }
-//
-//    @Override
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
     public void initView() {
         requestManager = Glide.with(BaseApplication.sContext);
         initAd();
@@ -96,5 +87,4 @@ public class LaunchActivity extends UmengSplashMessageActivity {
             }
         });
     }
-
 }

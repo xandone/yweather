@@ -6,6 +6,7 @@ import java.lang.reflect.ParameterizedType;
  * Created by xandone on 2016/12/21.
  */
 public class TUtils {
+    //    获得超类的泛型参数的实际类型
     public static <T> T getT(Object obj, int i) {
         try {
             return ((Class<T>) ((ParameterizedType) (obj.getClass()
