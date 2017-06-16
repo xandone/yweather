@@ -9,6 +9,13 @@
         <item name="android:textColorPrimary">@color/white</item>
     </style>
 
+    <style name="launchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash_logo_list</item>
+
+    </style>
+
 
     <!--去除dialog的背景标题等-->
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
