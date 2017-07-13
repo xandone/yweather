@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\android_studio\workplace5\yweather\PushSDK\assets"/><source path="E:\android_studio\workplace5\yweather\PushSDK\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\android_studio\workplace5\yweather\PushSDK\build-types\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\workplace\app\yweather\PushSDK\assets"/><source path="D:\workplace\app\yweather\PushSDK\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\workplace\app\yweather\PushSDK\build-types\debug\assets"/></dataSet></merger>
