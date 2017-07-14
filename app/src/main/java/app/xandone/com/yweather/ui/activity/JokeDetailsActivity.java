@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -67,6 +68,12 @@ public class JokeDetailsActivity extends BaseActivity {
     public void initPresenter() {
 
     }
+
+//    @Override
+//    public void doBefore() {
+//        super.doBefore();
+//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//    }
 
     @Override
     public void initView() {

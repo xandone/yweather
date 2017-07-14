@@ -19,7 +19,8 @@
                 android:id="@+id/joke_details_title_img"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:transitionName="joke_item_img_trans" />
 
             <RelativeLayout
                 android:id="@+id/joke_details_title_rl"
@@ -36,7 +37,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@color/middle_tv_black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:transitionName="joke_item_title_trans" />
 
                 <ImageView
                     android:id="@+id/joke_details_comeOn_icon"
@@ -58,7 +60,8 @@
                 android:layout_marginRight="10dp"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/light_tv_black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:transitionName="joke_item_content_trans" />
 
             <TextView
                 android:id="@+id/joke_details_content_date"

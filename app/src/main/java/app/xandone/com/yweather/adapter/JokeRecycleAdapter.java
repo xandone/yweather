@@ -1,9 +1,12 @@
 package app.xandone.com.yweather.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import com.bumptech.glide.RequestManager;
 import java.util.List;
 
 import app.xandone.com.yweather.BaseApplication;
+import app.xandone.com.yweather.MainActivity;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.bean.JokerBean;
 import app.xandone.com.yweather.ui.activity.JokeDetailsActivity;
@@ -32,13 +36,13 @@ import butterknife.OnClick;
  */
 public class JokeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<JokerBean> jokerBeanList;
-    private Context mContext;
+    private Activity mContext;
     private RequestManager requestManager;
     private Fragment mFragment;
     private int mLastPosition = -1;
     public static final String JOKERECYCLEADAPTER_POSITION = "JokeRecycleAdapter_position";
 
-    public JokeRecycleAdapter(Fragment fragment, Context context, List<JokerBean> list) {
+    public JokeRecycleAdapter(Fragment fragment, Activity context, List<JokerBean> list) {
         this.mFragment = fragment;
         this.mContext = context;
         this.jokerBeanList = list;
@@ -125,7 +129,14 @@ public class JokeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 case R.id.joke_item_root:
                     Intent intent = new Intent(mContext, JokeDetailsActivity.class);
                     intent.putExtra(JOKERECYCLEADAPTER_POSITION, jokerBeanList.get(getLayoutPosition()));
-                    mFragment.startActivity(intent);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        mFragment.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(mContext,
+                                Pair.create((View) joke_item_title, "joke_item_title_trans"),
+                                Pair.create((View) joke_item_content, "joke_item_content_trans"),
+                                Pair.create((View) joke_item_img, "joke_item_img_trans")).toBundle());
+                    } else {
+                        mFragment.startActivity(intent);
+                    }
                     break;
             }
         }

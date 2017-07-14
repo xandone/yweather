@@ -7,12 +7,25 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:windowAnimationStyle">@style/act_anim_style</item>
     </style>
 
     <style name="launchTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_logo_list</item>
+
+    </style>
+
+    <style name="act_anim_style" parent="@android:style/Animation">
+        <!-- 新Activity 进入 -->
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <!-- 旧Activity退出 -->
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <!-- 新Activity退出 -->
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
+        <!-- 旧Activity进入 -->
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
 
     </style>
 
