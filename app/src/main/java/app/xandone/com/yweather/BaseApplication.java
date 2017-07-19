@@ -1,7 +1,7 @@
 package app.xandone.com.yweather;
 
-import android.app.Application;
 import android.content.res.Resources;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.umeng.message.IUmengRegisterCallback;
@@ -10,7 +10,7 @@ import com.umeng.message.PushAgent;
 /**
  * Created by xandone on 2016/12/21.
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     public static BaseApplication sContext;
 
     @Override

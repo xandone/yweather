@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import app.xandone.com.yweather.config.Config;
 import app.xandone.com.yweather.ui.base.BaseActivity;
 import app.xandone.com.yweather.ui.fragment.LeftSlideFragment;
 import app.xandone.com.yweather.ui.fragment.MainGirlFragment;
