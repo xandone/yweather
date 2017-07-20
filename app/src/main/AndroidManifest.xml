@@ -38,6 +38,7 @@
 
         <activity
             android:name=".ui.activity.LaunchActivity"
+            android:theme="@style/launchTheme"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -51,6 +52,7 @@
         <activity android:name=".ui.activity.ChooseCityActivity"/>
         <activity android:name=".ui.activity.JokeImageDetailsActivity"/>
         <activity android:name=".ui.activity.JokePagerActivity"/>
+        <activity android:name=".ui.activity.SetActivity"/>
 
         <service
             android:name=".service.CheckAdService"

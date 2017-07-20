@@ -9,6 +9,7 @@ import app.xandone.com.yweather.AppManager;
 import app.xandone.com.yweather.MainActivity;
 import app.xandone.com.yweather.R;
 import app.xandone.com.yweather.ui.activity.ChooseCityActivity;
+import app.xandone.com.yweather.ui.activity.SetActivity;
 import app.xandone.com.yweather.ui.base.BaseFragment;
 import app.xandone.com.yweather.utils.ToastUtils;
 import butterknife.BindView;
@@ -45,7 +46,7 @@ public class LeftSlideFragment extends BaseFragment {
                 ToastUtils.showShort("by xandone...");
                 break;
             case R.id.foot_menu_set:
-                ToastUtils.showShort("设置...");
+                mActivity.startActivity(new Intent(mActivity, SetActivity.class));
                 break;
             case R.id.foot_menu_exit:
                 AppManager.newInstance().finishAllActivity();

@@ -69,12 +69,6 @@ public class JokeDetailsActivity extends BaseActivity {
 
     }
 
-//    @Override
-//    public void doBefore() {
-//        super.doBefore();
-//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-//    }
-
     @Override
     public void initView() {
         requestManager = Glide.with(BaseApplication.sContext);

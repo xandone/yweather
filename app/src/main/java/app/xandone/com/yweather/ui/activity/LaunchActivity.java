@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -23,9 +24,11 @@ import butterknife.BindView;
  * Created by xandone on 2017/6/16.
  */
 
-public class LaunchActivity extends BaseActivity{
+public class LaunchActivity extends BaseActivity {
     @BindView(R.id.launch_iv)
     ImageView launch_iv;
+    @BindView(R.id.launch_tv)
+    TextView launch_tv_text;
 
     private boolean isDownLoad;
     private RequestManager requestManager;
@@ -44,7 +47,7 @@ public class LaunchActivity extends BaseActivity{
     public void initView() {
         requestManager = Glide.with(BaseApplication.sContext);
         initAd();
-        launcAnim(launch_iv);
+        launcAnim(launch_tv_text);
     }
 
     public void initService() {

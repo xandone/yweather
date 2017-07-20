@@ -16,6 +16,7 @@
     <string name="toolbar_title_joke">糗事</string>
     <string name="toolbar_title_words">文字</string>
     <string name="toolbar_title_imgs">图片</string>
+    <string name="toolbar_title_set">个人中心</string>
     <string name="main_menu_share">分享</string>
     <string name="main_menu_share_yweahter">"https://github.com/xandone/yweather"</string>
 </resources>

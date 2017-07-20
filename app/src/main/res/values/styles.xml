@@ -114,6 +114,17 @@
         <item name="android:layout_marginLeft">15dp</item>
     </style>
 
+    <style name="act_set_tv">
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:textColor">@color/light_tv_black</item>
+    </style>
+
+
     <style name="LeftSlideitem_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
