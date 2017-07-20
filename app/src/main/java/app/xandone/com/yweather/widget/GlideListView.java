@@ -37,6 +37,7 @@ public class GlideListView extends RelativeLayout {
 
     public void yScroll(int duration) {
         mScroller.startScroll(0, Utils.getWH()[1], 0, -Utils.getWH()[1], duration);
+        invalidate();
     }
 
     @Override
