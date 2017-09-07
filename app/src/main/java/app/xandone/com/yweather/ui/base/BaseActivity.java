@@ -9,8 +9,13 @@ import android.view.Window;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import app.xandone.com.yweather.AppManager;
 import app.xandone.com.yweather.BuildConfig;
+import app.xandone.com.yweather.bean.event.Event;
+import app.xandone.com.yweather.utils.EventBusUtils;
 import app.xandone.com.yweather.utils.LoadingDialog;
 import app.xandone.com.yweather.utils.TUtils;
 import app.xandone.com.yweather.utils.ToastUtils;
@@ -30,6 +35,9 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         setContentView(setLayout());
         PushAgent.getInstance(getApplicationContext()).onAppStart();
         ButterKnife.bind(this);
+        if (isRegisterEventBus()) {
+            EventBusUtils.register(this);
+        }
         mPresenter = TUtils.getT(this, 0);
         mModel = TUtils.getT(this, 1);
         if (mPresenter != null) {
@@ -132,6 +140,9 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     protected void onDestroy() {
         super.onDestroy();
         AppManager.newInstance().removectivity(this);
+        if (isRegisterEventBus()) {
+            EventBusUtils.unregister(this);
+        }
     }
 
     public abstract int setLayout();
@@ -139,6 +150,42 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public abstract void initPresenter();
 
     public abstract void initView();
+
+    protected boolean isRegisterEventBus() {
+        return false;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusCome(Event event) {
+        if (event != null) {
+            receiveEvent(event);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onStickyEventBusCome(Event event) {
+        if (event != null) {
+            receiveStickyEvent(event);
+        }
+    }
+
+    /**
+     * 接收到分发到事件
+     *
+     * @param event 事件
+     */
+    protected void receiveEvent(Event event) {
+
+    }
+
+    /**
+     * 接受到分发的粘性事件
+     *
+     * @param event 粘性事件
+     */
+    protected void receiveStickyEvent(Event event) {
+
+    }
 
 
 }
